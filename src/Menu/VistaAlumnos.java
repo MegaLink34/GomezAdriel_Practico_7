@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package Menu;
+import Clases.*;
 
 import java.util.HashSet;
 import javax.swing.JOptionPane;
@@ -17,7 +18,7 @@ public class VistaAlumnos extends javax.swing.JInternalFrame {
     /**
      * Creates new form VistaAlumnos
      */
-    public VistaAlumnos() {
+    public VistaAlumnos(HashSet<Alumno> alumnos) {
         initComponents();
         
         this.alumnos = alumnos;
@@ -59,6 +60,11 @@ public class VistaAlumnos extends javax.swing.JInternalFrame {
 
         jButtonNuevo.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jButtonNuevo.setText("Nuevo");
+        jButtonNuevo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonNuevoActionPerformed(evt);
+            }
+        });
 
         jButtonGuardar.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jButtonGuardar.setText("Guardar");
@@ -158,8 +164,26 @@ public class VistaAlumnos extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(this, "Complete el formulario antes de guardar.");
         } else {
             int leg = Integer.parseInt(legajo);
+            
+            if (alumnos.add(new Alumno(leg, apellido, nombre))){
+                
+                alumnos.add(new Alumno(leg, apellido, nombre));
+                JOptionPane.showMessageDialog(this, "Legajo N° " + leg +" guardado.");
+                
+            } else {
+                
+                JOptionPane.showMessageDialog(this, "Legajo ya anotado.");
+                
+            }
         }
     }//GEN-LAST:event_jButtonGuardarActionPerformed
+
+    private void jButtonNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNuevoActionPerformed
+        // TODO add your handling code here:
+        jTextFieldLegajo.setText("");
+        jTextFieldNombre.setText("");
+        jTextFieldApellido.setText("");
+    }//GEN-LAST:event_jButtonNuevoActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
