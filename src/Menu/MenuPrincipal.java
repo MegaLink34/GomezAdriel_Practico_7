@@ -24,6 +24,9 @@ public class MenuPrincipal extends javax.swing.JFrame {
      */
     public MenuPrincipal() {
         initComponents();
+        
+        alumnos = new HashSet<>();
+        materias = new HashSet<>();
     }
 
     /**
